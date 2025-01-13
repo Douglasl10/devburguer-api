@@ -16,14 +16,16 @@ function authMiddleware (request, response, next){
                 throw new Error();
             }
 
-            request.userId = decoded.id;
-            request.userName = decoded.name;
+            request.userId = decoded.id
+            request.userName = decoded.name
             
-            return next();
+           
         });
-    } catch (err){
+    }
+     catch (err){
         return response.status(401).json({error: 'Token is invalid'})
     }
+    return next();
 }
 
 export default authMiddleware;
